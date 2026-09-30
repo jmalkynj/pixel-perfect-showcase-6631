@@ -56,7 +56,9 @@ function validate(v: Fields, file: File | null) {
 
 export function RegistrationForm() {
   const [values, setValues] = useState<Fields>(empty);
-  const [errors, setErrors] = useState<Partial<Record<keyof Fields | "cv" | "form", string>>>({});
+  const [errors, setErrors] = useState<{
+    [K in keyof Fields | "cv" | "form"]?: string | undefined;
+  }>({});
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
   const [status, setStatus] = useState<"idle" | "uploading" | "saving" | "done">("idle");
